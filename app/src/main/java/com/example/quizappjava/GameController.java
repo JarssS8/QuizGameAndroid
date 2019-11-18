@@ -2,19 +2,19 @@ package com.example.quizappjava;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.media.Image;
+import android.content.Intent;
 import android.media.MediaPlayer;
 import android.os.Bundle;
+import android.view.Gravity;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.PopupWindow;
 import android.widget.TextView;
-import android.widget.Toast;
-
 import com.google.android.material.snackbar.Snackbar;
-
-import java.lang.reflect.Array;
 import java.util.Random;
 
 public class GameController extends AppCompatActivity {
@@ -27,6 +27,7 @@ public class GameController extends AppCompatActivity {
     private Button btComprobar;
     private int idRespuesta;
     private String[] respuestas;
+    private MediaPlayer mediaPlayer;
 
 
     @Override
@@ -41,7 +42,8 @@ public class GameController extends AppCompatActivity {
         // lbScore=findViewById(R.id.);
         btComprobar = findViewById(R.id.btComprobar);
 
-        MediaPlayer.create(this, R.raw.heroesdelsabado).start();
+        mediaPlayer = MediaPlayer.create(this, R.raw.heroesdelsabado);
+        mediaPlayer.start();
         user = (User) getIntent().getSerializableExtra("user");
         cargarLayoutDatos();
         cargarPregunta();
@@ -52,32 +54,85 @@ public class GameController extends AppCompatActivity {
             Snackbar.make(view, "Intenta responder algo", Snackbar.LENGTH_SHORT).show();
         } else {
             if (respuestas[idRespuesta].equalsIgnoreCase(txtRespuesta.getText().toString().trim())) {
-                Snackbar.make(view, "Bien", Snackbar.LENGTH_SHORT).show();
+                if (user.getNivel() == 6) {
+                    popUpLevelComplete(view, "win");
+                } else {
+                    user.setNivel(user.getNivel() + 1);
+                    if (user.getLifes()<3) {
+                        user.setLifes(user.getLifes() + 1);
+                    }
+                    popUpLevelComplete(view, "nextLevel");
+                }
             } else {
-                Snackbar.make(view, "Mal", Snackbar.LENGTH_SHORT).show();
-                user.setLifes(user.getLifes()-1);
-                if (user.getLifes()==0) {
-                    //Hacer pantalla de perder
+                user.setLifes(user.getLifes() - 1);
+                if (user.getLifes() == 0) {
+                    popUpLevelComplete(view, "lose");
+                }else{
+                    actualizarVidas();
                 }
             }
 
         }
 
 
-}
+    }
+
+    public void popUpLevelComplete(View view, final String accion) {
+        LayoutInflater layoutInflater = (LayoutInflater) getApplicationContext().getSystemService(LAYOUT_INFLATER_SERVICE);
+        final View popUpView = layoutInflater.inflate(R.layout.popup_signup, null);
+        final PopupWindow popupWindow = new PopupWindow(popUpView, ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+        TextView lbPopUp = popUpView.findViewById(R.id.lbPopUp);
+        Button btGetIt = popUpView.findViewById(R.id.btGetIt);
+        if (accion.equalsIgnoreCase("win")) {
+            lbPopUp.setText("FELICIDADES HAS GANADO.\nTu puntuacion ha sido de: " + user.getScore() + " puntos\"");
+            btGetIt.setText("Menu Principal");
+        } else if (accion.equalsIgnoreCase("lose")) {
+            lbPopUp.setText("Lo siento has perdido.\nTu puntuacion ha sido de: " + user.getScore() + " puntos");
+            btGetIt.setText("Menu Principal");
+        }
+        btGetIt.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                switch (accion) {
+                    case "nextLevel":
+                        mediaPlayer.stop();
+                        popupWindow.dismiss();
+                        Bundle extras = new Bundle();
+                        extras.putSerializable("user", user);
+                        finish();
+                        startActivity(getIntent().replaceExtras(extras));
+                        break;
+                    default:
+                        mediaPlayer.stop();
+                        popupWindow.dismiss();
+                        finish();
+                        Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+                        startActivity(intent);
+                        break;
+                }
+
+            }
+        });
+        popupWindow.showAtLocation(view, Gravity.CENTER, 0, 0);
+    }
 
     public void cargarLayoutDatos() {
         lbName.setText(user.getName());
         // lbScore.setText(user.getScore());
+        actualizarVidas();
+
+    }
+
+    public void actualizarVidas(){
         switch (user.getLifes()) {
             case 1:
-
+                imgLifes.setImageResource(R.drawable.unavida);
                 break;
             case 2:
-
+                imgLifes.setImageResource(R.drawable.dosvidas);
                 break;
             case 3:
-
+                imgLifes.setImageResource(R.drawable.tresvidas);
                 break;
 
         }

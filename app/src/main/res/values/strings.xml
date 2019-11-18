@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">QuizAppJava</string>
+    <string name="getit">Siguiente Nivel</string>
+    <string name="paramethers_signup">Has superado el nivel</string>
 </resources>
