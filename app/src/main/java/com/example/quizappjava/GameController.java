@@ -10,6 +10,9 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
+
+import com.google.android.material.snackbar.Snackbar;
 
 import java.lang.reflect.Array;
 import java.util.Random;
@@ -22,6 +25,8 @@ public class GameController extends AppCompatActivity {
     private TextView lbName;
     private TextView lbScore;
     private Button btComprobar;
+    private int idRespuesta;
+    private String[] respuestas;
 
 
     @Override
@@ -43,12 +48,27 @@ public class GameController extends AppCompatActivity {
     }
 
     public void controller(View view) {
+        if (txtRespuesta.getText().toString().trim().length() == 0) {
+            Snackbar.make(view, "Intenta responder algo", Snackbar.LENGTH_SHORT).show();
+        } else {
+            if (respuestas[idRespuesta].equalsIgnoreCase(txtRespuesta.getText().toString().trim())) {
+                Snackbar.make(view, "Bien", Snackbar.LENGTH_SHORT).show();
+            } else {
+                Snackbar.make(view, "Mal", Snackbar.LENGTH_SHORT).show();
+                user.setLifes(user.getLifes()-1);
+                if (user.getLifes()==0) {
+                    //Hacer pantalla de perder
+                }
+            }
 
-    }
+        }
+
+
+}
 
     public void cargarLayoutDatos() {
         lbName.setText(user.getName());
-        lbScore.setText(user.getScore());
+        // lbScore.setText(user.getScore());
         switch (user.getLifes()) {
             case 1:
 
@@ -64,42 +84,50 @@ public class GameController extends AppCompatActivity {
     }
 
     public void cargarPregunta() {
-        ImageView[] imagenesDelNivel = new ImageView[3];
+        int[] idImagen = new int[3];
+
         Random rand = new Random();
-        String imagenNombre = "nivel" + user.getNivel() + "_" + rand.nextInt(3);
         switch (user.getNivel()) {
             case 1:
-                imagenesDelNivel[0].setImageDrawable();
-                imagenesDelNivel[1].setImageDrawable();
-                imagenesDelNivel[2].setImageDrawable();
+                idImagen[0] = R.drawable.nivel_1_1;
+                idImagen[1] = R.drawable.nivel_1_2;
+                idImagen[2] = R.drawable.nivel_1_3;
+                respuestas = new String[]{"superman", "batman", "capitan america"};
                 break;
+
             case 2:
-                imagenesDelNivel[0].setImageDrawable();
-                imagenesDelNivel[1].setImageDrawable();
-                imagenesDelNivel[2].setImageDrawable();
+                idImagen[0] = R.drawable.nivel_2_1;
+                idImagen[1] = R.drawable.nivel_2_2;
+                idImagen[2] = R.drawable.nivel_2_3;
+                respuestas = new String[]{"gmail", "facebook", "instagram"};
                 break;
             case 3:
-                imagenesDelNivel[0].setImageDrawable();
-                imagenesDelNivel[1].setImageDrawable();
-                imagenesDelNivel[2].setImageDrawable();
+                idImagen[0] = R.drawable.nivel_3_1;
+                idImagen[1] = R.drawable.nivel_3_2;
+                idImagen[2] = R.drawable.nivel_3_3;
+                respuestas = new String[]{"gitlab", "git", "github"};
                 break;
             case 4:
-                imagenesDelNivel[0].setImageDrawable();
-                imagenesDelNivel[1].setImageDrawable();
-                imagenesDelNivel[2].setImageDrawable();
+                idImagen[0] = R.drawable.nivel_4_1;
+                idImagen[1] = R.drawable.nivel_4_2;
+                idImagen[2] = R.drawable.nivel_4_3;
+                respuestas = new String[]{"ferrari", "honda", "mustang"};
                 break;
             case 5:
-                imagenesDelNivel[0].setImageDrawable();
-                imagenesDelNivel[1].setImageDrawable();
-                imagenesDelNivel[2].setImageDrawable();
+                idImagen[0] = R.drawable.nivel_5_1;
+                idImagen[1] = R.drawable.nivel_5_2;
+                idImagen[2] = R.drawable.nivel_5_3;
+                respuestas = new String[]{"patriots", "eagles", "ravens"};
                 break;
             case 6:
-                imagenesDelNivel[0].setImageDrawable();
-                imagenesDelNivel[1].setImageDrawable();
-                imagenesDelNivel[2].setImageDrawable();
+                idImagen[0] = R.drawable.nivel_1_1;
+                idImagen[1] = R.drawable.nivel_1_2;
+                idImagen[2] = R.drawable.nivel_1_3;
+                respuestas = new String[]{"superman", "batman", "capitan america"};
                 break;
 
         }
-        imgPregunta = imagenesDelNivel[rand.nextInt(3)];
+        idRespuesta = rand.nextInt(3);
+        imgPregunta.setImageResource(idImagen[idRespuesta]);
     }
 }
