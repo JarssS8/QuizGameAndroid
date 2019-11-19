@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.media.MediaPlayer;
 import android.os.Bundle;
+import android.provider.MediaStore;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -38,7 +39,7 @@ public class GameController extends AppCompatActivity {
         imgLifes = findViewById(R.id.imageLifes);
         imgPregunta = findViewById(R.id.imageResolve);
         txtRespuesta = findViewById(R.id.txtRespuesta);
-        lbName = findViewById(R.id.lbUsername);
+        lbName = findViewById(R.id.lbNombreUsuario);
         // lbScore=findViewById(R.id.);
         btComprobar = findViewById(R.id.btComprobar);
 
@@ -50,11 +51,18 @@ public class GameController extends AppCompatActivity {
     }
 
     public void controller(View view) {
+        MediaPlayer.create(this,R.raw.descarga).start();
         if (txtRespuesta.getText().toString().trim().length() == 0) {
             Snackbar.make(view, "Intenta responder algo", Snackbar.LENGTH_SHORT).show();
         } else {
             if (respuestas[idRespuesta].equalsIgnoreCase(txtRespuesta.getText().toString().trim())) {
+                mediaPlayer.stop();
+                mediaPlayer=MediaPlayer.create(this,R.raw.correctanswer);
+                mediaPlayer.start();
                 if (user.getNivel() == 6) {
+                    mediaPlayer.stop();
+                    mediaPlayer=MediaPlayer.create(this,R.raw.wingame);
+                    mediaPlayer.start();
                     popUpLevelComplete(view, "win");
                 } else {
                     user.setNivel(user.getNivel() + 1);
@@ -66,8 +74,15 @@ public class GameController extends AppCompatActivity {
             } else {
                 user.setLifes(user.getLifes() - 1);
                 if (user.getLifes() == 0) {
+                    mediaPlayer.stop();
+                    mediaPlayer=MediaPlayer.create(this,R.raw.lose);
+                    mediaPlayer.start();
+                    imgLifes.setVisibility(View.INVISIBLE);
                     popUpLevelComplete(view, "lose");
                 }else{
+                    mediaPlayer.stop();
+                    mediaPlayer=MediaPlayer.create(this,R.raw.no);
+                    mediaPlayer.start();
                     actualizarVidas();
                 }
             }

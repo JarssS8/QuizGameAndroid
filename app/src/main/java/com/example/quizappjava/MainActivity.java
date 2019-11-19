@@ -9,16 +9,20 @@ import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.android.material.snackbar.Snackbar;
 
+import java.util.Random;
+
 public class MainActivity extends AppCompatActivity {
     private Button btJugar;
     private Button btCreditos;
     private EditText txtName;
+    private ImageView imageMain;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -27,12 +31,16 @@ public class MainActivity extends AppCompatActivity {
         txtName = findViewById(R.id.txtNombre);
         btCreditos = findViewById(R.id.btCreditos);
         btJugar = findViewById(R.id.btJugar);
+        imageMain=findViewById(R.id.imageMain);
 
         MediaPlayer.create(this, R.raw.adamssong).start();
         setRandomImage();
     }
 
     private void setRandomImage() {
+        Random rand=new Random();
+        int idImagen[]=new int[]{R.drawable.main_1,R.drawable.main_2,R.drawable.main_3,R.drawable.main_4};
+        imageMain.setImageResource(idImagen[rand.nextInt(4)]);
 
     }
 
@@ -50,10 +58,8 @@ public class MainActivity extends AppCompatActivity {
                     intent.putExtra("user",user);
                     startActivity(intent);
                 } else {
-                    Snackbar.make(view, "Introduce un nombre menor de 15 caracteres", Snackbar.LENGTH_SHORT).show();
-
-
-                    //forzarTeclado();
+                    Toast.makeText(this, "Introduce un nombre de hasta 15 caracteres", Toast.LENGTH_LONG).show();
+                    forzarTeclado();
                 }
                 break;
             case R.id.btCreditos:
