@@ -23,6 +23,7 @@ public class MainActivity extends AppCompatActivity {
     private Button btCreditos;
     private EditText txtName;
     private ImageView imageMain;
+    private  MediaPlayer mediaPlayer;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,7 +34,8 @@ public class MainActivity extends AppCompatActivity {
         btJugar = findViewById(R.id.btJugar);
         imageMain=findViewById(R.id.imageMain);
 
-        MediaPlayer.create(this, R.raw.adamssong).start();
+        mediaPlayer=MediaPlayer.create(this, R.raw.adamssong);
+        mediaPlayer.start();
         setRandomImage();
     }
 
@@ -56,6 +58,7 @@ public class MainActivity extends AppCompatActivity {
                     user.setScore(0);
                     Intent intent=new Intent(this,GameController.class);
                     intent.putExtra("user",user);
+                    mediaPlayer.stop();
                     startActivity(intent);
                 } else {
                     Toast.makeText(this, "Introduce un nombre de hasta 15 caracteres", Toast.LENGTH_LONG).show();

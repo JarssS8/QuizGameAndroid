@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.media.MediaPlayer;
 import android.os.Bundle;
+import android.os.SystemClock;
 import android.provider.MediaStore;
 import android.view.Gravity;
 import android.view.LayoutInflater;
@@ -16,6 +17,11 @@ import android.widget.ImageView;
 import android.widget.PopupWindow;
 import android.widget.TextView;
 import com.google.android.material.snackbar.Snackbar;
+
+import java.sql.Timestamp;
+import java.time.LocalDateTime;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.Random;
 
 public class GameController extends AppCompatActivity {
@@ -24,11 +30,14 @@ public class GameController extends AppCompatActivity {
     private ImageView imgPregunta;
     private EditText txtRespuesta;
     private TextView lbName;
-    private TextView lbScore;
+    private TextView lbScoreUsuario;
+    private TextView lbScoreUser;
     private Button btComprobar;
     private int idRespuesta;
     private String[] respuestas;
     private MediaPlayer mediaPlayer;
+    private int vidasIniciales;
+    private Long horaEmpiezaNivel;
 
 
     @Override
@@ -40,12 +49,14 @@ public class GameController extends AppCompatActivity {
         imgPregunta = findViewById(R.id.imageResolve);
         txtRespuesta = findViewById(R.id.txtRespuesta);
         lbName = findViewById(R.id.lbNombreUsuario);
-        // lbScore=findViewById(R.id.);
+        lbScoreUser=findViewById(R.id.lbScoreUsuario);
         btComprobar = findViewById(R.id.btComprobar);
 
         mediaPlayer = MediaPlayer.create(this, R.raw.heroesdelsabado);
         mediaPlayer.start();
         user = (User) getIntent().getSerializableExtra("user");
+        vidasIniciales=user.getLifes();
+        horaEmpiezaNivel = System.currentTimeMillis();
         cargarLayoutDatos();
         cargarPregunta();
     }
@@ -56,15 +67,18 @@ public class GameController extends AppCompatActivity {
             Snackbar.make(view, "Intenta responder algo", Snackbar.LENGTH_SHORT).show();
         } else {
             if (respuestas[idRespuesta].equalsIgnoreCase(txtRespuesta.getText().toString().trim())) {
-                mediaPlayer.stop();
-                mediaPlayer=MediaPlayer.create(this,R.raw.correctanswer);
+                mediaPlayer.pause();
+                MediaPlayer.create(this,R.raw.correctanswer).start();
                 mediaPlayer.start();
                 if (user.getNivel() == 6) {
+                    asignarPuntuacion();
+                    lbScoreUser.setText(""+user.getScore());
                     mediaPlayer.stop();
                     mediaPlayer=MediaPlayer.create(this,R.raw.wingame);
                     mediaPlayer.start();
                     popUpLevelComplete(view, "win");
                 } else {
+                    asignarPuntuacion();
                     user.setNivel(user.getNivel() + 1);
                     if (user.getLifes()<3) {
                         user.setLifes(user.getLifes() + 1);
@@ -89,6 +103,22 @@ public class GameController extends AppCompatActivity {
 
         }
 
+
+    }
+
+    private void asignarPuntuacion() {
+        user.setScore(user.getScore()+100);//Pasarse el nivel
+        if (vidasIniciales==user.getLifes()) {//Pasarse el nivel a la primera
+            user.setScore(user.getScore()+50);
+        }
+        if(user.getNivel()==6){//Puntos extra por cada vida que tengas
+            user.setScore(user.getScore()+(user.getLifes()*50));
+        }
+        horaEmpiezaNivel=System.currentTimeMillis()-horaEmpiezaNivel;
+        if (horaEmpiezaNivel<=10000) {
+            horaEmpiezaNivel=((horaEmpiezaNivel/100)*400)/100;
+            user.setScore(user.getScore()+horaEmpiezaNivel.intValue());
+        }
 
     }
 
@@ -133,7 +163,7 @@ public class GameController extends AppCompatActivity {
 
     public void cargarLayoutDatos() {
         lbName.setText(user.getName());
-        // lbScore.setText(user.getScore());
+        lbScoreUser.setText(""+user.getScore());
         actualizarVidas();
 
     }

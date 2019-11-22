@@ -4,6 +4,55 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
+    <TextView
+        android:id="@+id/lbNombre"
+        android:layout_width="wrap_content"
+        android:layout_height="23dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:text="Nombre:" />
+
+    <TextView
+        android:id="@+id/lbNombreUsuario"
+        android:layout_width="wrap_content"
+        android:layout_height="23dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginStart="73dp"
+        android:layout_marginTop="16dp" />
+
+    <TextView
+        android:id="@+id/lbScore"
+        android:layout_width="wrap_content"
+        android:layout_height="23dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginStart="15dp"
+        android:layout_marginTop="80dp"
+        android:text="Score: " />
+
+    <TextView
+        android:id="@+id/lbVidas"
+        android:layout_width="wrap_content"
+        android:layout_height="23dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="52dp"
+        android:text="Vidas:" />
+
+    <ImageView
+        android:id="@+id/imageLifes"
+        android:layout_width="80dp"
+        android:layout_height="36dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginStart="59dp"
+        android:layout_marginTop="42dp"
+        app:srcCompat="@drawable/tresvidas" />
+
     <ImageView
         android:id="@+id/imageResolve"
         android:layout_width="166dp"
@@ -12,7 +61,7 @@
         android:layout_alignParentTop="true"
         android:layout_marginStart="122dp"
         android:layout_marginTop="111dp"
-        app:srcCompat="@drawable/main_1" />
+        app:srcCompat="@drawable/nivel_1_2" />
 
     <EditText
         android:id="@+id/txtRespuesta"
@@ -37,42 +86,15 @@
         android:text="Comprobar" />
 
     <TextView
-        android:id="@+id/lbVidas"
+        android:id="@+id/lbScoreUsuario"
         android:layout_width="wrap_content"
-        android:layout_height="23dp"
+        android:layout_height="wrap_content"
         android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
-        android:layout_marginStart="15dp"
-        android:layout_marginTop="49dp"
-        android:text="Vidas:" />
-
-    <TextView
-        android:id="@+id/lbNombre"
-        android:layout_width="wrap_content"
-        android:layout_height="23dp"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentTop="true"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="16dp"
-        android:text="Nombre:" />
-
-    <TextView
-        android:id="@+id/lbNombreUsuario"
-        android:layout_width="wrap_content"
-        android:layout_height="23dp"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentTop="true"
-        android:layout_marginStart="73dp"
-        android:layout_marginTop="16dp" />
-
-    <ImageView
-        android:id="@+id/imageLifes"
-        android:layout_width="80dp"
-        android:layout_height="36dp"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentTop="true"
-        android:layout_marginStart="57dp"
-        android:layout_marginTop="39dp"
-        app:srcCompat="@drawable/tresvidas" />
+        android:layout_marginStart="62dp"
+        android:layout_marginTop="79dp"
+        android:textColor="#FF0000"
+        android:textSize="18sp"
+        android:textStyle="bold" />
 
 </RelativeLayout>
