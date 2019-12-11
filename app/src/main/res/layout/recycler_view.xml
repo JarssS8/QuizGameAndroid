@@ -1,63 +1,65 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:id="@+id/txtNameOption"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content">
 
     <TextView
         android:id="@+id/lbName"
-        android:layout_width="151dp"
-        android:layout_height="43dp"
-        android:capitalize="none"
-        android:elegantTextHeight="false"
-        android:freezesText="false"
-        android:gravity="center"
-        android:text="name"
-        android:textAllCaps="true"
-        android:textStyle="bold"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:layout_width="129dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="21dp"
+        android:fontFamily="serif"
+        android:text="Hola"
+        android:textAlignment="textStart"
+        android:textAppearance="@style/TextAppearance.AppCompat.Display2"
+        android:textIsSelectable="false"
+        android:textSize="15sp"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/lbLevel2"
+        android:layout_width="109dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginStart="154dp"
+        android:layout_marginTop="21dp"
+        android:fontFamily="serif"
+        android:text="Hola"
+        android:textAlignment="textStart"
+        android:textAppearance="@style/TextAppearance.AppCompat.Display2"
+        android:textIsSelectable="false"
+        android:textSize="15sp"
+        android:textStyle="bold" />
 
     <TextView
         android:id="@+id/lbScore"
-        android:layout_width="112dp"
-        android:layout_height="46dp"
-        android:layout_marginStart="152dp"
-        android:capitalize="none"
-        android:elegantTextHeight="false"
-        android:freezesText="false"
-        android:gravity="center"
-        android:text="score"
-        android:textAllCaps="true"
-        android:textStyle="bold"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <TextView
-        android:id="@+id/lbLevel"
-        android:layout_width="75dp"
-        android:layout_height="46dp"
-        android:layout_marginStart="264dp"
-        android:capitalize="none"
-        android:elegantTextHeight="false"
-        android:freezesText="false"
-        android:gravity="center"
-        android:text="level"
-        android:textAllCaps="true"
-        android:textStyle="bold"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:layout_width="132dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginStart="266dp"
+        android:layout_marginTop="21dp"
+        android:fontFamily="serif"
+        android:text="Hola"
+        android:textAlignment="textStart"
+        android:textAppearance="@style/TextAppearance.AppCompat.Display2"
+        android:textIsSelectable="false"
+        android:textSize="15sp"
+        android:textStyle="bold" />
 
     <View
         android:id="@+id/view"
-        android:layout_width="309dp"
-        android:layout_height="41dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:layout_width="wrap_content"
+        android:layout_height="79dp"
+        android:background="#604697"
+        android:backgroundTint="#34BE3838"
+        android:backgroundTintMode="src_in"
+        android:hapticFeedbackEnabled="false" />
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+</RelativeLayout>

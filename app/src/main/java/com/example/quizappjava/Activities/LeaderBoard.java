@@ -22,18 +22,12 @@ public class LeaderBoard extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_leader_board);
-
         DaoSQLite manager=new DaoSQLite(this);
         SQLiteDatabase db=manager.getReadableDatabase();
-
         layoutManager=new LinearLayoutManager(this);
-
         recyclerView=findViewById(R.id.recyclerView);
-
-       // recyclerView.setHasFixedSize(true);
+        recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(layoutManager);
-
-
         mAdapter=new RecyclerController(manager.getSortScores());
         recyclerView.setAdapter(mAdapter);
     }
