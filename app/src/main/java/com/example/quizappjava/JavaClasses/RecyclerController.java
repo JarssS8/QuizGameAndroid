@@ -67,7 +67,7 @@ public class RecyclerController extends RecyclerView.Adapter<RecyclerController.
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
             lbName=itemView.findViewById(R.id.lbName);
-            lbLevel=itemView.findViewById(R.id.lbLevel);
+            lbLevel=itemView.findViewById(R.id.lbLevel2);
             lbScore=itemView.findViewById(R.id.lbScore);
 
         }
