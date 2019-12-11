@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <TextView
+        android:id="@+id/lbName"
+        android:layout_width="151dp"
+        android:layout_height="43dp"
+        android:capitalize="none"
+        android:elegantTextHeight="false"
+        android:freezesText="false"
+        android:gravity="center"
+        android:text="name"
+        android:textAllCaps="true"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/lbScore"
+        android:layout_width="112dp"
+        android:layout_height="46dp"
+        android:layout_marginStart="152dp"
+        android:capitalize="none"
+        android:elegantTextHeight="false"
+        android:freezesText="false"
+        android:gravity="center"
+        android:text="score"
+        android:textAllCaps="true"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/lbLevel"
+        android:layout_width="75dp"
+        android:layout_height="46dp"
+        android:layout_marginStart="264dp"
+        android:capitalize="none"
+        android:elegantTextHeight="false"
+        android:freezesText="false"
+        android:gravity="center"
+        android:text="level"
+        android:textAllCaps="true"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <View
+        android:id="@+id/view"
+        android:layout_width="309dp"
+        android:layout_height="41dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,4 +1,4 @@
-package com.example.quizappjava;
+package com.example.quizappjava.Beans;
 
 import android.content.ContentValues;
 
@@ -9,6 +9,16 @@ public class User implements Serializable {
     private int lifes;
     private int level;
     private int score;
+
+    public  User(){
+
+    }
+
+    public User(String name, int score, int level) {
+        this.name=name;
+        this.score=score;
+        this.level=level;
+    }
 
     public String getName() {
         return name;
@@ -43,7 +53,7 @@ public class User implements Serializable {
     }
     public ContentValues toContentValues(){
         ContentValues values= new ContentValues();
-        values.put("username",name);
+        values.put("name",name);
         values.put("score",score);
         values.put("level",level);
         return values;

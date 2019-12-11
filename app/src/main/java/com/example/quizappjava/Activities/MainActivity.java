@@ -1,4 +1,4 @@
-package com.example.quizappjava;
+package com.example.quizappjava.Activities;
 
 import android.content.Context;
 
@@ -14,6 +14,8 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.quizappjava.R;
+import com.example.quizappjava.Beans.User;
 import com.google.android.material.snackbar.Snackbar;
 
 import java.util.Random;
@@ -78,8 +80,8 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-    public void openLeaderBoard(){
-        Intent intent =new Intent();
+    public void openLeaderBoard(View view){
+        Intent intent =new Intent(this,LeaderBoard.class);
         startActivity(intent);
     }
 

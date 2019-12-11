@@ -1,9 +1,11 @@
-package com.example.quizappjava;
+package com.example.quizappjava.DataBase;
 
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+
+import com.example.quizappjava.Beans.User;
 
 
 public class DaoSQLite extends SQLiteOpenHelper {

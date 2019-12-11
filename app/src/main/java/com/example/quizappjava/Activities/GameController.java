@@ -1,8 +1,9 @@
-package com.example.quizappjava;
+package com.example.quizappjava.Activities;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.database.sqlite.SQLiteDatabase;
 import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.view.Gravity;
@@ -14,6 +15,10 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.PopupWindow;
 import android.widget.TextView;
+
+import com.example.quizappjava.DataBase.DaoSQLite;
+import com.example.quizappjava.R;
+import com.example.quizappjava.Beans.User;
 import com.google.android.material.snackbar.Snackbar;
 
 import java.util.Random;
@@ -158,7 +163,7 @@ public class GameController extends AppCompatActivity {
 
     private void newScore(User user) {
         DaoSQLite manager=new DaoSQLite(this);
-        //SQLiteDatabase db=manager.getReadableDatabase();
+        SQLiteDatabase db=manager.getReadableDatabase();
         manager.insertNewScore(user);
     }
 
