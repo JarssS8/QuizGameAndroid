@@ -1,27 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:layout_width="match_parent" android:layout_height="match_parent">
-
-    <ImageView
-        android:id="@+id/imageResolve"
-        android:layout_width="166dp"
-        android:layout_height="168dp"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentTop="true"
-        android:layout_marginStart="117dp"
-        android:layout_marginTop="208dp"
-        app:srcCompat="@android:drawable/btn_star_big_off" />
-
-    <TextView
-        android:id="@+id/lbVidas"
-        android:layout_width="wrap_content"
-        android:layout_height="23dp"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentTop="true"
-        android:layout_marginStart="15dp"
-        android:layout_marginTop="49dp"
-        android:text="Vidas:" />
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
 
     <TextView
         android:id="@+id/lbNombre"
@@ -34,25 +15,53 @@
         android:text="Nombre:" />
 
     <TextView
-        android:id="@+id/lbUsername"
+        android:id="@+id/lbNombreUsuario"
         android:layout_width="wrap_content"
         android:layout_height="23dp"
         android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
-        android:layout_alignParentBottom="true"
-        android:layout_marginStart="74dp"
-        android:layout_marginTop="16dp"
-        android:layout_marginBottom="691dp" />
+        android:layout_marginStart="73dp"
+        android:layout_marginTop="16dp" />
+
+    <TextView
+        android:id="@+id/lbLevel"
+        android:layout_width="wrap_content"
+        android:layout_height="23dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginStart="15dp"
+        android:layout_marginTop="80dp"
+        android:text="Score: " />
+
+    <TextView
+        android:id="@+id/lbVidas"
+        android:layout_width="wrap_content"
+        android:layout_height="23dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="52dp"
+        android:text="Vidas:" />
 
     <ImageView
         android:id="@+id/imageLifes"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="80dp"
+        android:layout_height="36dp"
         android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
-        android:layout_marginStart="80dp"
-        android:layout_marginTop="44dp"
-        app:srcCompat="@android:drawable/btn_star_big_off" />
+        android:layout_marginStart="59dp"
+        android:layout_marginTop="42dp"
+        app:srcCompat="@drawable/tresvidas" />
+
+    <ImageView
+        android:id="@+id/imageResolve"
+        android:layout_width="166dp"
+        android:layout_height="168dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginStart="122dp"
+        android:layout_marginTop="111dp"
+        app:srcCompat="@drawable/nivel_1_2" />
 
     <EditText
         android:id="@+id/txtRespuesta"
@@ -60,8 +69,8 @@
         android:layout_height="wrap_content"
         android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
-        android:layout_marginStart="88dp"
-        android:layout_marginTop="438dp"
+        android:layout_marginStart="100dp"
+        android:layout_marginTop="325dp"
         android:ems="10"
         android:inputType="textPersonName" />
 
@@ -71,9 +80,21 @@
         android:layout_height="wrap_content"
         android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
-        android:layout_marginStart="137dp"
-        android:layout_marginTop="527dp"
-        android:onClick="comprobar"
+        android:layout_marginStart="147dp"
+        android:layout_marginTop="453dp"
+        android:onClick="controller"
         android:text="Comprobar" />
+
+    <TextView
+        android:id="@+id/lbScoreUsuario"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginStart="62dp"
+        android:layout_marginTop="79dp"
+        android:textColor="#FF0000"
+        android:textSize="18sp"
+        android:textStyle="bold" />
 
 </RelativeLayout>

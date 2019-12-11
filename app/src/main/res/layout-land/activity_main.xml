@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:onClick="onClick"
-    tools:context=".MainActivity">
+    tools:context=".Activities.MainActivity">
 
     <Button
         android:id="@+id/btCreditos"
@@ -23,6 +23,7 @@
         android:id="@+id/btJugar"
         android:layout_width="156dp"
         android:layout_height="61dp"
+        android:onClick="onClick"
         android:text="Jugar!"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -44,7 +45,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <ImageView
-        android:id="@+id/imageView"
+        android:id="@+id/imageMain"
         android:layout_width="139dp"
         android:layout_height="114dp"
         app:layout_constraintBottom_toBottomOf="parent"
