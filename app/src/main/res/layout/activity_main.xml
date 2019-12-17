@@ -4,33 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Activities.MainActivity">
-
-    <Button
-        android:id="@+id/btCreditos"
-        android:layout_width="156dp"
-        android:layout_height="61dp"
-        android:onClick="onClick"
-        android:text="Creditos"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.764" />
-
-    <Button
-        android:id="@+id/btJugar"
-        android:layout_width="156dp"
-        android:layout_height="61dp"
-        android:onClick="onClick"
-        android:text="Jugar!"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.626" />
+    tools:context=".Activities.MainActivity"
+    android:background="@drawable/fondo_pantalla_movil_cielo_acuarela_79603_597">
 
     <EditText
         android:id="@+id/txtNombre"
@@ -54,13 +29,23 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.192"
-        tools:srcCompat="@drawable/main_1" />
+        tools:srcCompat="@drawable/logo_final_kappa_2" />
 
-    <ImageButton
+    <ImageView
+        android:id="@+id/btJugar"
+        android:layout_width="125dp"
+        android:layout_height="110dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.763"
+        app:srcCompat="@drawable/ic_play_circle_outline_black_24dp" />
+
+    <ImageView
         android:id="@+id/btLeaderBorad"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:onClick="openLeaderBoard"
+        android:layout_width="54dp"
+        android:layout_height="53dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.045"

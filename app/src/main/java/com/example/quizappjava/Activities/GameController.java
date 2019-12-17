@@ -43,16 +43,12 @@ public class GameController extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_game_controller);
-
         imgLifes = findViewById(R.id.imageLifes);
         imgPregunta = findViewById(R.id.imageResolve);
         txtRespuesta = findViewById(R.id.txtRespuesta);
         lbName = findViewById(R.id.lbNombreUsuario);
         lbScoreUser=findViewById(R.id.lbScoreUsuario);
         btComprobar = findViewById(R.id.btComprobar);
-
-        mediaPlayer = MediaPlayer.create(this, R.raw.heroesdelsabado);
-        mediaPlayer.start();
         user = (User) getIntent().getSerializableExtra("user");
         vidasIniciales=user.getLifes();
         horaEmpiezaNivel = System.currentTimeMillis();
@@ -66,13 +62,10 @@ public class GameController extends AppCompatActivity {
             Snackbar.make(view, "Intenta responder algo", Snackbar.LENGTH_SHORT).show();
         } else {
             if (respuestas[idRespuesta].equalsIgnoreCase(txtRespuesta.getText().toString().trim())) {
-                mediaPlayer.pause();
                 MediaPlayer.create(this,R.raw.correctanswer).start();
-                mediaPlayer.start();
-                if (user.getLevel() == 6) {
+                if (user.getLevel() == 7) {
                     asignarPuntuacion();
                     lbScoreUser.setText(""+user.getScore());
-                    mediaPlayer.stop();
                     mediaPlayer=MediaPlayer.create(this,R.raw.wingame);
                     mediaPlayer.start();
                     popUpLevelComplete(view, "win");
@@ -87,13 +80,11 @@ public class GameController extends AppCompatActivity {
             } else {
                 user.setLifes(user.getLifes() - 1);
                 if (user.getLifes() == 0) {
-                    mediaPlayer.stop();
                     mediaPlayer=MediaPlayer.create(this,R.raw.lose);
                     mediaPlayer.start();
                     imgLifes.setVisibility(View.INVISIBLE);
                     popUpLevelComplete(view, "lose");
                 }else{
-                    mediaPlayer.stop();
                     mediaPlayer=MediaPlayer.create(this,R.raw.no);
                     mediaPlayer.start();
                     actualizarVidas();
@@ -110,7 +101,7 @@ public class GameController extends AppCompatActivity {
         if (vidasIniciales==user.getLifes()) {//Pasarse el nivel a la primera
             user.setScore(user.getScore()+50);
         }
-        if(user.getLevel()==6){//Puntos extra por cada vida que tengas
+        if(user.getLevel()==7){//Puntos extra por cada vida que tengas
             user.setScore(user.getScore()+(user.getLifes()*50));
         }
         horaEmpiezaNivel=System.currentTimeMillis()-horaEmpiezaNivel;
@@ -139,7 +130,6 @@ public class GameController extends AppCompatActivity {
             public void onClick(View v) {
                 switch (accion) {
                     case "nextLevel":
-                        mediaPlayer.stop();
                         popupWindow.dismiss();
                         Bundle extras = new Bundle();
                         extras.putSerializable("user", user);
@@ -148,11 +138,8 @@ public class GameController extends AppCompatActivity {
                         break;
                     default:
                         newScore(user);
-                        mediaPlayer.stop();
                         popupWindow.dismiss();
                         finish();
-                        Intent intent = new Intent(getApplicationContext(), MainActivity.class);
-                        startActivity(intent);
                         break;
                 }
 
@@ -195,41 +182,47 @@ public class GameController extends AppCompatActivity {
         Random rand = new Random();
         switch (user.getLevel()) {
             case 1:
-                idImagen[0] = R.drawable.nivel_1_1;
-                idImagen[1] = R.drawable.nivel_1_2;
-                idImagen[2] = R.drawable.nivel_1_3;
-                respuestas = new String[]{"superman", "batman", "capitan america"};
+                idImagen[0] = R.drawable.volcanes;
+                idImagen[1] = R.drawable.iceberg;
+                idImagen[2] = R.drawable.img_lbernaus_20170516_140138_imagenes_lv_terceros_istock_451925737_kecb_u422627825675ite_992x558_lavanguardia_web;
+                respuestas = new String[]{"volcan", "iceberg", "oasis"};
                 break;
 
             case 2:
-                idImagen[0] = R.drawable.nivel_2_1;
-                idImagen[1] = R.drawable.nivel_2_2;
-                idImagen[2] = R.drawable.nivel_2_3;
-                respuestas = new String[]{"gmail", "facebook", "instagram"};
+                idImagen[0] = R.drawable.steve_jobs;
+                idImagen[1] = R.drawable.elon_musk;
+                idImagen[2] = R.drawable.bill_gates;
+                respuestas = new String[]{"steve jobs", "elon musk", "bill gates"};
                 break;
             case 3:
-                idImagen[0] = R.drawable.nivel_3_1;
-                idImagen[1] = R.drawable.nivel_3_2;
-                idImagen[2] = R.drawable.nivel_3_3;
-                respuestas = new String[]{"gitlab", "git", "github"};
+                idImagen[0] = R.drawable.napoleon;
+                idImagen[1] = R.drawable.hitler_fuhrer;
+                idImagen[2] = R.drawable.stalin;
+                respuestas = new String[]{"napoleon", "hitler", "stalin"};
                 break;
             case 4:
-                idImagen[0] = R.drawable.nivel_4_1;
-                idImagen[1] = R.drawable.nivel_4_2;
-                idImagen[2] = R.drawable.nivel_4_3;
-                respuestas = new String[]{"ferrari", "honda", "mustang"};
+                idImagen[0] = R.drawable.pio_baroja;
+                idImagen[1] = R.drawable.federico_garcia_lorca;
+                idImagen[2] = R.drawable.cervantes;
+                respuestas = new String[]{"pio baroja", "federico garcia lorca", "cervantes"};
                 break;
             case 5:
-                idImagen[0] = R.drawable.nivel_5_1;
-                idImagen[1] = R.drawable.nivel_5_2;
-                idImagen[2] = R.drawable.nivel_5_3;
-                respuestas = new String[]{"patriots", "eagles", "ravens"};
+                idImagen[0] = R.drawable.atomo;
+                idImagen[1] = R.drawable.mole_cula;
+                idImagen[2] = R.drawable.neurona;
+                respuestas = new String[]{"atomo", "molecula", "neurona"};
                 break;
             case 6:
-                idImagen[0] = R.drawable.nivel_1_1;
-                idImagen[1] = R.drawable.nivel_1_2;
-                idImagen[2] = R.drawable.nivel_1_3;
-                respuestas = new String[]{"superman", "batman", "capitan america"};
+                idImagen[0] = R.drawable.madame_curie_2;
+                idImagen[1] = R.drawable.edison_340a;
+                idImagen[2] = R.drawable.einstein_lengua_getty;
+                respuestas = new String[]{"marie curie", "thomas edison", "einstein"};
+                break;
+            case 7:
+                idImagen[0] = R.drawable.anotaci_n_2019_12_16_202231;
+                idImagen[1] = R.drawable.anotaci_n_2019_12_16_202931;
+                idImagen[2] = R.drawable.anotaci_n_2019_12_16_203327;
+                respuestas = new String[]{"35", "150", "12"};
                 break;
 
         }

@@ -28,7 +28,7 @@ public class DaoSQLite extends SQLiteOpenHelper {
     }
 
     public Cursor getSortScores(){
-        return getReadableDatabase().query(TABLE_NAME_SCORES,null,null,null,null,null,"score");
+        return getReadableDatabase().query(TABLE_NAME_SCORES,null,null,null,null,null,"score DESC");
     }
     public void insertNewScore(User user){
         sqLiteDatabase.insert(TABLE_NAME_SCORES,null,user.toContentValues());

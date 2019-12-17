@@ -4,6 +4,7 @@ import android.content.Context;
 
 import android.content.Intent;
 import android.media.MediaPlayer;
+import android.net.wifi.p2p.WifiP2pManager;
 import android.os.Bundle;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
@@ -20,31 +21,36 @@ import com.google.android.material.snackbar.Snackbar;
 
 import java.util.Random;
 
-public class MainActivity extends AppCompatActivity {
-    private Button btJugar;
+public class MainActivity extends AppCompatActivity implements View.OnClickListener {
+    private ImageView btJugar;
     private Button btCreditos;
+    private ImageView btLeader;
     private EditText txtName;
     private ImageView imageMain;
-    private  MediaPlayer mediaPlayer;
+    static  MediaPlayer mediaPlayer;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         txtName = findViewById(R.id.txtNombre);
-        btCreditos = findViewById(R.id.btCreditos);
         btJugar = findViewById(R.id.btJugar);
+        btJugar.setClickable(true);
+        btJugar.setOnClickListener(this);
         imageMain=findViewById(R.id.imageMain);
+        btLeader= findViewById(R.id.btLeaderBorad);
+        btLeader.setClickable(true);
+        btLeader.setOnClickListener(this);
 
-        mediaPlayer=MediaPlayer.create(this, R.raw.adamssong);
+        mediaPlayer=MediaPlayer.create(this, R.raw.appmaintheme);
+        mediaPlayer.setLooping(true);
+        mediaPlayer.setVolume((float) 0.5,(float) 0.5);
         mediaPlayer.start();
         setRandomImage();
     }
 
     private void setRandomImage() {
-        Random rand=new Random();
-        int idImagen[]=new int[]{R.drawable.main_1,R.drawable.main_2,R.drawable.main_3,R.drawable.main_4};
-        imageMain.setImageResource(idImagen[rand.nextInt(4)]);
+        imageMain.setImageResource(R.drawable.logo_final_kappa_2);
 
     }
 
@@ -60,7 +66,6 @@ public class MainActivity extends AppCompatActivity {
                     user.setScore(0);
                     Intent intent=new Intent(this,GameController.class);
                     intent.putExtra("user",user);
-                    mediaPlayer.stop();
                     startActivity(intent);
                 } else {
                     Toast.makeText(this, "Introduce un nombre de hasta 15 caracteres", Toast.LENGTH_LONG).show();
@@ -70,6 +75,10 @@ public class MainActivity extends AppCompatActivity {
             case R.id.btCreditos:
                 Snackbar.make(view, "Coming soon", Snackbar.LENGTH_SHORT).show();
                 break;
+            case R.id.btLeaderBorad:
+                Intent intent =new Intent(this,LeaderBoard.class);
+                startActivity(intent);
+                break;
         }
     }
 
@@ -78,11 +87,6 @@ public class MainActivity extends AppCompatActivity {
         InputMethodManager inputMethodManager = (InputMethodManager) this.getSystemService(Context.INPUT_METHOD_SERVICE);
         inputMethodManager.toggleSoftInput(InputMethodManager.SHOW_FORCED, 0);
 
-    }
-
-    public void openLeaderBoard(View view){
-        Intent intent =new Intent(this,LeaderBoard.class);
-        startActivity(intent);
     }
 
 }
